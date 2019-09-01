@@ -47,3 +47,5 @@ if __name__ == "__main__":
       pp.pprint(high)
     else:
       pp.pprint(table)
+
+  tmrwppk()
