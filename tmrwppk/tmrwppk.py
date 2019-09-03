@@ -31,10 +31,10 @@ def safety_checks():
   right_now = arrow.now().format('HH:mm:ss')
   if right_now <= "16:30:00":
     raise RuntimeError("ComEd publishes rates at 16:30. The time is currently: {}" .format(right_now))
-    exit(1)
+    exit(0)
   if r.status_code is not 200:
     raise RuntimeError("ComEd servers are acting up. The return code is: {}" .format(r.status_code))
-    exit (1)
+    exit (0)
   return safety_checks
 
 def main():
