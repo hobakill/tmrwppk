@@ -22,7 +22,7 @@ setup(
     author_email='nick@hobart.io',
     entry_points={
         'console_scripts': [
-            'tmrwppk = tmrwppk:main',
+            'tmrwppk = tmrwppk.tmrwppk:main',
             ],
         },
     classifiers=[
