@@ -26,26 +26,25 @@ low = sorted(zipped, key=lambda x: x[1])
 zipped2 = zip(times, prices)
 high = sorted(zipped2, key=lambda x: x[1],reverse=True)
 
-if __name__ == "__main__":
+def safety_checks():
+  sys.tracebacklimit = 0
+  right_now = arrow.now().format('HH:mm:ss')
+  if right_now <= "16:30:00":
+    raise RuntimeError("ComEd publishes rates at 16:30. The time is currently: {}" .format(right_now))
+    exit(1)
+  if r.status_code is not 200:
+    raise RuntimeError("ComEd servers are acting up. The return code is: {}" .format(r.status_code))
+    exit (1)
+  return safety_checks
 
-  def safety_checks():
-    sys.tracebacklimit = 0
-    right_now = arrow.now().format('HH:mm:ss')
-    if right_now <= "16:30:00":
-      raise RuntimeError("ComEd publishes rates at 16:30. The time is currently: {}" .format(right_now))
-      exit(1)
-    if r.status_code is not 200:
-      raise RuntimeError("ComEd servers are acting up. The return code is: {}" .format(r.status_code))
-      exit (1)
-    return safety_checks
+def main():
+  safety_checks()
+  if args.sort == "low":
+    pp.pprint(low)
+  elif args.sort == "high":
+    pp.pprint(high)
+  else:
+    pp.pprint(table)
 
-  def tmrwppk():
-    safety_checks()
-    if args.sort == "low":
-      pp.pprint(low)
-    elif args.sort == "high":
-      pp.pprint(high)
-    else:
-      pp.pprint(table)
-
-  tmrwppk()
+if __name__ == '__main__':
+  main()
