@@ -20,6 +20,11 @@ test_requirements = ['pytest', ]
 setup(
     author="Nick Hobart",
     author_email='nick@hobart.io',
+    entry_points={
+        'console_scripts': [
+            'tmrwppk = tmrwppk:main',
+            ],
+        },
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
