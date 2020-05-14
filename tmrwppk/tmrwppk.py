@@ -32,7 +32,7 @@ def safety_checks():
   if right_now <= "16:30:00":
     raise RuntimeError("ComEd publishes rates at 16:30. The time is currently: {}" .format(right_now))
     exit(0)
-  if r.status_code is not 200:
+  if r.status_code != 200:
     raise RuntimeError("ComEd servers are acting up. The return code is: {}" .format(r.status_code))
     exit (0)
   return safety_checks
